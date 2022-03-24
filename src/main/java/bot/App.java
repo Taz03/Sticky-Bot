@@ -18,7 +18,7 @@ import java.util.Map;
 public class App {
     private static final Map<String, Command> commands = new HashMap<>();
 
-    public static void addCommand(Command cmd) {
+    private static void addCommand(Command cmd) {
         commands.put(cmd.getName(), cmd);
     }
 

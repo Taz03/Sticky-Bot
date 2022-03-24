@@ -1,7 +1,14 @@
-ARG input
+ARG TOKEN
 
-FROM gradle:7.4.1-jdk17
-COPY . /bot
-WORKDIR /bot
-ENV TOKEN=$input
-RUN gradle run
+FROM alpine
+
+WORKDIR /opt/bot
+
+COPY build/libs/Sticky-Bot-all.jar .
+
+RUN apk --no-cache add openjdk17-jre-headless
+RUN apk --no-cache add ca-certificates
+
+ENV TOKEN=$TOKEN
+
+CMD [ "java", "-jar", "Sticky-Bot-all.jar" ]
