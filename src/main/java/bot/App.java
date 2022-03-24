@@ -27,7 +27,7 @@ public class App {
     }
 
     public static void main(String[] args) throws LoginException {
-        JDA bot = JDABuilder.createDefault(args[0])
+        JDA bot = JDABuilder.createDefault(System.getenv("TOKEN"))
                 .addEventListeners(new SlashCommandListener())
                 .addEventListeners(new MessageReceivedListener())
                 .build();
