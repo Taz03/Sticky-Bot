@@ -1,23 +1,23 @@
 package bot;
 
-import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class StickyMessage {
-    private final static ArrayList<StickyMessage> stickyMessages = new ArrayList<>();
-
-    private final MessageChannel channel;
+    private final long messageChannelId;
     private final String text;
     private long messageId;
+    private List<MessageEmbed> embeds;
 
-    public StickyMessage(MessageChannel channel, String text) {
-        this.channel = channel;
+    public StickyMessage(long messageChannelId, String text, List<MessageEmbed> embeds) {
+        this.messageChannelId = messageChannelId;
         this.text = text;
+        setEmbeds(embeds);
     }
 
-    public MessageChannel getChannel() {
-        return channel;
+    public long getMessageChannelId() {
+        return messageChannelId;
     }
 
     public String getText() {
@@ -32,21 +32,11 @@ public class StickyMessage {
         this.messageId = messageId;
     }
 
-    public static void addStickyMessage(StickyMessage stickyMessage) {
-        stickyMessages.add(stickyMessage);
+    public List<MessageEmbed> getEmbeds() {
+        return embeds;
     }
 
-    public static void removeStickyMessage(StickyMessage stickyMessage) {
-        stickyMessages.remove(stickyMessage);
-    }
-
-    public static StickyMessage getStickyMessageByChannel(MessageChannel channel) {
-        for (StickyMessage stickyMessage : stickyMessages) {
-            if (stickyMessage.getChannel().getId().equals(channel.getId())) {
-                return stickyMessage;
-            }
-        }
-
-        return null;
+    public void setEmbeds(List<MessageEmbed> embeds) {
+        this.embeds = embeds;
     }
 }

@@ -1,55 +1,34 @@
 package bot.command;
 
 import bot.StickyMessage;
-
+import bot.StickyMessageUtils;
 import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
-import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class StickCommand implements Command {
+public class StickCommand implements MessageCommand {
     @Override
-    public void run(SlashCommandEvent event) {
-        MessageChannel channel = event.getChannel();
-        String text;
+    public void run(MessageContextInteractionEvent event) {
+        String msg = event.getTarget().getContentRaw();
+        List<MessageEmbed> embeds = event.getTarget().getEmbeds();
+        MessageChannel channel = event.getTarget().getChannel();
 
-        try {
-            text = channel.retrieveMessageById(event.getOption("id").getAsString()).complete().getContentRaw();
-        } catch (Exception e) {
-            e.printStackTrace();
-            event.reply("No message found with this id").setEphemeral(true).queue();
-            return;
-        }
+        StickyMessage stickyMessage = new StickyMessage(channel.getIdLong(), msg, embeds);
 
-        StickyMessage stickyMessage = new StickyMessage(channel, text);
+        channel.sendMessage(msg).setEmbeds(embeds).queue(message -> stickyMessage.setMessageId(message.getIdLong()));
 
-        channel.sendMessage(text).queue(message -> {
-            stickyMessage.setMessageId(message.getIdLong());
-        });
+        if (event.isFromGuild()) StickyMessageUtils.addSticky(event.getGuild().getIdLong(), stickyMessage);
+        else StickyMessageUtils.addSticky(event.getPrivateChannel().getIdLong(), stickyMessage);
 
-        StickyMessage.addStickyMessage(stickyMessage);
-
-        event.reply("Sticked a message to this channel").setEphemeral(true).queue();
+        event.reply("""
+                Sticking Message...
+                Done :thumbsup:""").setEphemeral(true).queue();
     }
 
     @Override
-    public String getName() {
-        return "stick";
-    }
-
-    @Override
-    public String getDescription() {
-        return "Sticks the specified message to this channel";
-    }
-
-    @Override
-    public ArrayList<OptionData> getOptions() {
-        ArrayList<OptionData> options = new ArrayList<>();
-
-        options.add(new OptionData(OptionType.STRING, "id", "id of the message to stick (must be in this channel)", true));
-
-        return options;
+    public String name() {
+        return "Stick Message";
     }
 }

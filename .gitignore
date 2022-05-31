@@ -1,5 +1,4 @@
 /.gradle/
-build/classes
-build/tmp
-build/generated
+build/*
+!build/libs
 .idea
