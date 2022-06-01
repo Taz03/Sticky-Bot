@@ -7,13 +7,13 @@ import java.util.List;
 public class StickyMessage {
     private final long messageChannelId;
     private final String text;
+    private final List<MessageEmbed> embeds;
     private long messageId;
-    private List<MessageEmbed> embeds;
 
     public StickyMessage(long messageChannelId, String text, List<MessageEmbed> embeds) {
         this.messageChannelId = messageChannelId;
         this.text = text;
-        setEmbeds(embeds);
+        this.embeds = embeds;
     }
 
     public long getMessageChannelId() {
@@ -24,19 +24,15 @@ public class StickyMessage {
         return text;
     }
 
+    public List<MessageEmbed> getEmbeds() {
+        return embeds;
+    }
+
     public long getMessageId() {
         return messageId;
     }
 
     public void setMessageId(long messageId) {
         this.messageId = messageId;
-    }
-
-    public List<MessageEmbed> getEmbeds() {
-        return embeds;
-    }
-
-    public void setEmbeds(List<MessageEmbed> embeds) {
-        this.embeds = embeds;
     }
 }
