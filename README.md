@@ -1,8 +1,5 @@
 # Sticky-Bot
-
-[Invite bot](https://discord.com/api/oauth2/authorize?client_id=938366557082509332&permissions=277025519616&scope=bot%20applications.commands)
-
-# How to use
+## How to use
 Right click a message then go to "Apps" to access commands
 
 ![Commands](https://user-images.githubusercontent.com/73871477/171168857-093375c3-74bf-4eb8-ac39-142ddb5e490e.png)
