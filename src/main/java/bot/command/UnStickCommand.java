@@ -30,9 +30,4 @@ public class UnStickCommand implements MessageCommand {
     public String name() {
         return "Unstick Message";
     }
-
-    @Override
-    public boolean isGuildOnly() {
-        return true;
-    }
 }

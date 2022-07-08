@@ -27,7 +27,7 @@ public class MessageContextInteractionListener extends ListenerAdapter {
         CommandListUpdateAction update = bot.updateCommands();
 
         commandMap.values().forEach(command -> update.addCommands(
-                Commands.message(command.name()).setGuildOnly(command.isGuildOnly())
+                Commands.message(command.name()).setGuildOnly(true)
         ));
 
         update.queue();

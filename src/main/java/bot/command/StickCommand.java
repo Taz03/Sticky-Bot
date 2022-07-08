@@ -27,9 +27,4 @@ public class StickCommand implements MessageCommand {
     public String name() {
         return "Stick Message";
     }
-
-    @Override
-    public boolean isGuildOnly() {
-        return true;
-    }
 }
