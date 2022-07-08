@@ -15,14 +15,13 @@ public class MessageReceivedListener extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if (event.getAuthor().equals(event.getJDA().getSelfUser())) return;
 
-        StickyMessageUtils.getStickyMessageList(event.isFromGuild() ? event.getGuild().getIdLong() : event.getPrivateChannel().getIdLong()).forEach(stickyMessage -> {
-            if (stickyMessage.getMessageChannelId() == event.getChannel().getIdLong()) {
-                MessageChannel channel = bot.getChannelById(MessageChannel.class, stickyMessage.getMessageChannelId());
+        StickyMessageUtils.getStickyMessageList(event.getGuild().getIdLong()).forEach(stickyMessage -> {
+            if (stickyMessage.getChannelId() == event.getChannel().getIdLong()) {
+                MessageChannel channel = bot.getChannelById(MessageChannel.class, stickyMessage.getChannelId());
 
-                assert channel != null;
                 channel.deleteMessageById(stickyMessage.getMessageId()).queue();
 
-                channel.sendMessage(stickyMessage.getText()).setEmbeds(stickyMessage.getEmbeds()).queue(message -> stickyMessage.setMessageId(message.getIdLong()));
+                channel.sendMessage(stickyMessage.getText()).queue(message -> stickyMessage.setMessageId(message.getIdLong()));
             }
         });
     }

@@ -5,4 +5,8 @@ import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionE
 public interface MessageCommand {
     void run(MessageContextInteractionEvent event);
     String name();
+
+    default boolean isGuildOnly() {
+        return false;
+    }
 }

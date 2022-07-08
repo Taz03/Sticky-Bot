@@ -10,6 +10,7 @@ import javax.security.auth.login.LoginException;
 
 public class App {
     public static JDA bot;
+
     public static void main(String[] args) throws LoginException {
         bot = JDABuilder.createDefault(System.getenv("TOKEN"))
                 .addEventListeners(new MessageReceivedListener())

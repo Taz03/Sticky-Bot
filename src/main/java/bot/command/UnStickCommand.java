@@ -10,15 +10,13 @@ import java.util.List;
 public class UnStickCommand implements MessageCommand {
     @Override
     public void run(MessageContextInteractionEvent event) {
-        long channelId = event.isFromGuild() ? event.getGuild().getIdLong() : event.getPrivateChannel().getIdLong();
-
-        List<StickyMessage> stickyMessages = StickyMessageUtils.getStickyMessageList(channelId);
+        List<StickyMessage> stickyMessages = StickyMessageUtils.getStickyMessageList(event.getGuild().getIdLong());
 
         for (StickyMessage stickyMessage : stickyMessages) {
             if (stickyMessage.getMessageId() == event.getTarget().getIdLong()) {
                 stickyMessages.remove(stickyMessage);
 
-                (event.isFromGuild() ? event.getChannel() : event.getPrivateChannel()).deleteMessageById(stickyMessage.getMessageId()).queue();
+                event.getChannel().deleteMessageById(stickyMessage.getMessageId()).queue();
 
                 event.reply("Removed :thumbsup:").setEphemeral(true).queue();
                 return;
@@ -31,5 +29,10 @@ public class UnStickCommand implements MessageCommand {
     @Override
     public String name() {
         return "Unstick Message";
+    }
+
+    @Override
+    public boolean isGuildOnly() {
+        return true;
     }
 }
