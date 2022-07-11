@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 mainClassName = "bot.App"
@@ -11,7 +11,12 @@ repositories {
 }
 
 dependencies {
+    // Java Discord API
     implementation 'net.dv8tion:JDA:5.0.0-alpha.13'
-    implementation 'org.mongodb:mongodb-driver-sync:4.6.0'
+
+    // Logger for JDA
     implementation 'ch.qos.logback:logback-classic:1.2.11'
+
+    // Driver for Postgresql
+    implementation 'org.postgresql:postgresql:42.3.6'
 }

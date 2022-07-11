@@ -1,7 +1,7 @@
 package bot.command;
 
-import bot.StickyMessage;
-import bot.StickyMessageUtils;
+import bot.sticky.StickyMessage;
+import bot.sticky.StickyMessageUtils;
 
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
@@ -16,11 +16,11 @@ public class StickCommand implements MessageCommand {
 
         channel.sendMessage(msg).queue(message -> stickyMessage.setMessageId(message.getIdLong()));
 
-        StickyMessageUtils.addSticky(event.getGuild().getIdLong(), stickyMessage);
-
         event.reply("""
                 Sticking Message...
                 Done :thumbsup:""").setEphemeral(true).queue();
+
+        StickyMessageUtils.addSticky(event.getGuild().getIdLong(), stickyMessage);
     }
 
     @Override

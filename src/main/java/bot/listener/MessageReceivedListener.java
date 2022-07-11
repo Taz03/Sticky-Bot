@@ -1,6 +1,6 @@
 package bot.listener;
 
-import bot.StickyMessageUtils;
+import bot.sticky.StickyMessageUtils;
 
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -19,9 +19,10 @@ public class MessageReceivedListener extends ListenerAdapter {
             if (stickyMessage.getChannelId() == event.getChannel().getIdLong()) {
                 MessageChannel channel = bot.getChannelById(MessageChannel.class, stickyMessage.getChannelId());
 
-                channel.deleteMessageById(stickyMessage.getMessageId()).queue();
-
-                channel.sendMessage(stickyMessage.getText()).queue(message -> stickyMessage.setMessageId(message.getIdLong()));
+                if (channel != null) {
+                    channel.deleteMessageById(stickyMessage.getMessageId()).queue();
+                    channel.sendMessage(stickyMessage.getText()).queue(message -> StickyMessageUtils.updateSticky(stickyMessage, message.getIdLong()));
+                }
             }
         });
     }

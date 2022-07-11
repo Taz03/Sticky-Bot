@@ -1,14 +1,27 @@
+# Bot token
 ARG TOKEN
 
-FROM alpine
+# Postgresql info
+ARG PGHOST
+ARG PGPORT
+ARG PGDATABASE
+ARG PGUSER
+ARG PGPASSWORD
+
+FROM gradle:7.4.2-jdk18-alpine
 
 ENV TOKEN=$TOKEN
+ENV PGHOST=$PGHOST
+ENV PGPORT=$PGPORT
+ENV PGDATABASE=$PGDATABASE
+ENV PGUSER=$PGUSER
+ENV PGPASSWORD=$PGPASSWORD
 
-WORKDIR /opt/bot
+# Copy all the files to the container
+COPY . ./
 
-COPY build/libs/Sticky-Bot-all.jar .
+# Create the jar
+RUN ./gradlew shadowJar
 
-RUN apk --no-cache add openjdk17-jre-headless
-RUN apk --no-cache add ca-certificates
-
-CMD [ "java", "-jar", "Sticky-Bot-all.jar" ]
+# Run the jar
+CMD [ "java", "-jar", "build/libs/Sticky-Bot-all.jar" ]
