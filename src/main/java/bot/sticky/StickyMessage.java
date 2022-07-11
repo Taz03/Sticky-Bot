@@ -5,11 +5,6 @@ public class StickyMessage {
     private final String text;
     private long messageId;
 
-    public StickyMessage(long channelId, String text) {
-        this.channelId = channelId;
-        this.text = text;
-    }
-
     public StickyMessage(long channelId, String text, long messageId) {
         this.channelId = channelId;
         this.text = text;
