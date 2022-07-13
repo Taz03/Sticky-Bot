@@ -20,8 +20,8 @@ ENV PGPASSWORD=$PGPASSWORD
 # Copy all the files to the container
 COPY . ./
 
-# Create the jar
+# Create the shadow jar
 RUN chmod +x gradlew && ./gradlew shadowJar
 
-# Run the jar
+# Run the shadow jar
 CMD [ "java", "-jar", "build/libs/Sticky-Bot-all.jar" ]
