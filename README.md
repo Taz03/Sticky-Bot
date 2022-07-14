@@ -1,4 +1,7 @@
 # Sticky-Bot
+
+## [Invite](https://discord.com/api/oauth2/authorize?client_id=938366557082509332&permissions=2147571712&scope=bot%20applications.commands)
+
 ## How to use
 Right click a message then go to "Apps" to access commands
 
