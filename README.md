@@ -14,7 +14,7 @@ Right click a message then go to "Apps" to access commands
 https://user-images.githubusercontent.com/73871477/171182015-7237ba37-2f53-47fd-8dd4-e401a2bb7164.mp4
 
 ## Self Hosting
-1. Download `Dockere` & `PostgreSQL`.
+1. Download `Docker` & `PostgreSQL`.
 2. Host a `PostgreSQL`.
 3. Make a Database with the name `DATA` and these columns:-
     | Column Name | Type   | Constraints |
