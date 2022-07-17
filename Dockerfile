@@ -8,7 +8,7 @@ ARG PGDATABASE
 ARG PGUSER
 ARG PGPASSWORD
 
-FROM gradle:7.4.2-jdk18-alpine
+FROM gradle:7.5.0-jdk18-alpine
 
 ENV TOKEN=$TOKEN
 ENV PGHOST=$PGHOST
@@ -18,7 +18,7 @@ ENV PGUSER=$PGUSER
 ENV PGPASSWORD=$PGPASSWORD
 
 # Copy all the files to the container
-COPY . ./
+COPY . .
 
 # Create the shadow jar
 RUN chmod +x gradlew && ./gradlew shadowJar
