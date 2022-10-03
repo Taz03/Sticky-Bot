@@ -1,5 +1,6 @@
-package bot.command;
+package bot.command.message;
 
+import bot.command.MessageCommand;
 import bot.sticky.StickyMessage;
 import bot.sticky.StickyMessageUtils;
 
@@ -29,7 +30,7 @@ public class UnStickCommand implements MessageCommand {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "Unstick Message";
     }
 }

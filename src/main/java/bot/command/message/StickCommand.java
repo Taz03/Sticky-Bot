@@ -1,9 +1,10 @@
-package bot.command;
+package bot.command.message;
 
+import bot.command.MessageCommand;
 import bot.sticky.StickyMessage;
 import bot.sticky.StickyMessageUtils;
 
-import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 
 public class StickCommand implements MessageCommand {
@@ -24,7 +25,7 @@ public class StickCommand implements MessageCommand {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "Stick Message";
     }
 }

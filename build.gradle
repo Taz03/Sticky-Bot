@@ -12,11 +12,11 @@ repositories {
 
 dependencies {
     // Java Discord API
-    implementation 'net.dv8tion:JDA:5.0.0-alpha.13'
+    implementation 'net.dv8tion:JDA:5.0.0-alpha.20'
 
     // Logger for JDA
-    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'ch.qos.logback:logback-classic:1.4.1'
 
     // Driver for Postgresql
-    implementation 'org.postgresql:postgresql:42.3.6'
+    implementation 'org.postgresql:postgresql:42.5.0'
 }
