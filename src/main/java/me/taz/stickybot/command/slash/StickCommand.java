@@ -1,8 +1,9 @@
-package bot.command.slash;
+package me.taz.stickybot.command.slash;
 
-import bot.command.SlashCommand;
-import bot.sticky.StickyMessage;
-import bot.sticky.StickyMessageUtils;
+import me.taz.stickybot.command.SlashCommand;
+import me.taz.stickybot.sticky.StickyMessage;
+import me.taz.stickybot.sticky.StickyMessageUtils;
+
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -10,7 +11,6 @@ import net.dv8tion.jda.api.interactions.components.ActionRow;
 import net.dv8tion.jda.api.interactions.components.Modal;
 import net.dv8tion.jda.api.interactions.components.text.TextInput;
 import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
-import org.jetbrains.annotations.NotNull;
 
 public class StickCommand implements SlashCommand {
     @Override
@@ -29,7 +29,7 @@ public class StickCommand implements SlashCommand {
     }
 
     @Override
-    public void onModalInteraction(@NotNull ModalInteractionEvent event) {
+    public void onModalInteraction(ModalInteractionEvent event) {
         if (event.getModalId().equals("stick")) {
             String msg = event.getValue("message").getAsString();
             MessageChannel channel = event.getChannel();
