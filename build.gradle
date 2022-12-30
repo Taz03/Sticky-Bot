@@ -4,19 +4,21 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-mainClassName = "bot.App"
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
     // Java Discord API
-    implementation 'net.dv8tion:JDA:5.0.0-alpha.20'
+    implementation 'net.dv8tion:JDA:5.0.0-beta.2'
 
     // Logger for JDA
     implementation 'ch.qos.logback:logback-classic:1.4.1'
 
     // Driver for Postgresql
     implementation 'org.postgresql:postgresql:42.5.0'
+}
+
+application {
+    mainClass = 'me.taz.stickybot.App'
 }
