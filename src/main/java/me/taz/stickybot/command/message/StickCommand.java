@@ -1,8 +1,8 @@
-package bot.command.message;
+package me.taz.stickybot.command.message;
 
-import bot.command.MessageCommand;
-import bot.sticky.StickyMessage;
-import bot.sticky.StickyMessageUtils;
+import me.taz.stickybot.command.MessageCommand;
+import me.taz.stickybot.sticky.StickyMessage;
+import me.taz.stickybot.sticky.StickyMessageUtils;
 
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
