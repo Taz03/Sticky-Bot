@@ -1,7 +1,7 @@
 # Bot token
 ARG TOKEN
 
-FROM gradle:7.5.0-jdk18-alpine
+FROM gradle:7.6.0-jdk19-alpine
 
 ENV TOKEN=$TOKEN
 
