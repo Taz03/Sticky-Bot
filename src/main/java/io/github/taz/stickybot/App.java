@@ -1,11 +1,11 @@
-package me.taz.stickybot;
-
-import me.taz.stickybot.listener.MessageContextInteractionListener;
-import me.taz.stickybot.listener.MessageReceivedListener;
-import me.taz.stickybot.listener.SlashCommandInteractionListener;
+package io.github.taz.stickybot;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+
+import io.github.taz.stickybot.listener.MessageContextInteractionListener;
+import io.github.taz.stickybot.listener.MessageReceivedListener;
+import io.github.taz.stickybot.listener.SlashCommandInteractionListener;
 
 public class App {
     public static void main(String[] args) {

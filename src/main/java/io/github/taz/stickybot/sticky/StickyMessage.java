@@ -1,4 +1,4 @@
-package me.taz.stickybot.sticky;
+package io.github.taz.stickybot.sticky;
 
 public class StickyMessage {
     private final long channelId;

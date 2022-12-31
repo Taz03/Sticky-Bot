@@ -1,16 +1,16 @@
-package me.taz.stickybot.command.slash;
-
-import me.taz.stickybot.command.SlashCommand;
-import me.taz.stickybot.sticky.StickyMessage;
-import me.taz.stickybot.sticky.StickyMessageUtils;
+package io.github.taz.stickybot.command.slash;
 
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.ActionRow;
-import net.dv8tion.jda.api.interactions.components.Modal;
 import net.dv8tion.jda.api.interactions.components.text.TextInput;
 import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
+import net.dv8tion.jda.api.interactions.modals.Modal;
+
+import io.github.taz.stickybot.command.SlashCommand;
+import io.github.taz.stickybot.sticky.StickyMessage;
+import io.github.taz.stickybot.sticky.StickyMessageUtils;
 
 public class StickCommand implements SlashCommand {
     @Override

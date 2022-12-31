@@ -1,11 +1,11 @@
-package me.taz.stickybot.command.message;
-
-import me.taz.stickybot.command.MessageCommand;
-import me.taz.stickybot.sticky.StickyMessage;
-import me.taz.stickybot.sticky.StickyMessageUtils;
+package io.github.taz.stickybot.command.message;
 
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
+
+import io.github.taz.stickybot.command.MessageCommand;
+import io.github.taz.stickybot.sticky.StickyMessage;
+import io.github.taz.stickybot.sticky.StickyMessageUtils;
 
 public class StickCommand implements MessageCommand {
     @Override
@@ -13,9 +13,7 @@ public class StickCommand implements MessageCommand {
         String msg = event.getTarget().getContentRaw();
         MessageChannel channel = event.getTarget().getChannel();
 
-        event.reply("""
-                Sticking Message...
-                Done :thumbsup:""").setEphemeral(true).queue();
+        event.reply("Sticked :thumbsup:").setEphemeral(true).queue();
 
         channel.sendMessage(msg).queue(message -> {
             StickyMessage stickyMessage = new StickyMessage(channel.getIdLong(), msg, message.getIdLong());
