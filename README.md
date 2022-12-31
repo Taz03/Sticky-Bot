@@ -13,13 +13,12 @@ Right click a message then go to "Apps" to access commands
 https://user-images.githubusercontent.com/73871477/171182015-7237ba37-2f53-47fd-8dd4-e401a2bb7164.mp4
 
 ## Self Hosting
-1. Download `Docker` & `PostgreSQL`.
-2. Host a `PostgreSQL`.
+1. Download `Docker`.
 3. Clone this repo locally.
 4. Run `docker build -t sticky-bot .`.
 5. Now run the image u just build with the command
   ```
-  docker run -e TOKEN="bot token here" -e PGDATABASE="postgre db here" -e PGHOST="postgre host here" -e PGPASSWORD="postgre password here" -e PGPORT="postgre port here" -e PGUSER="postgre user here" sticky-bot
+  docker run -e TOKEN="bot token here" sticky-bot
   ```
 Now the bot should be up.
 
