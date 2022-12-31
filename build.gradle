@@ -20,5 +20,5 @@ dependencies {
 }
 
 application {
-    mainClass = 'me.taz.stickybot.App'
+    mainClass = 'io.github.taz.stickybot.App'
 }

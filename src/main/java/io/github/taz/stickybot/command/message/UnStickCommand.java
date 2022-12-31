@@ -1,12 +1,12 @@
-package me.taz.stickybot.command.message;
+package io.github.taz.stickybot.command.message;
 
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 
-import java.util.List;
+import io.github.taz.stickybot.command.MessageCommand;
+import io.github.taz.stickybot.sticky.StickyMessage;
+import io.github.taz.stickybot.sticky.StickyMessageUtils;
 
-import me.taz.stickybot.command.MessageCommand;
-import me.taz.stickybot.sticky.StickyMessage;
-import me.taz.stickybot.sticky.StickyMessageUtils;
+import java.util.List;
 
 public class UnStickCommand implements MessageCommand {
     @Override

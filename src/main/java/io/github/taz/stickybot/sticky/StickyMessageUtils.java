@@ -1,4 +1,4 @@
-package me.taz.stickybot.sticky;
+package io.github.taz.stickybot.sticky;
 
 import java.sql.*;
 

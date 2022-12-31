@@ -1,20 +1,17 @@
-package me.taz.stickybot.listener;
+package io.github.taz.stickybot.listener;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
-import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
-import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
+import io.github.taz.stickybot.command.SlashCommand;
+import io.github.taz.stickybot.command.slash.StickCommand;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import me.taz.stickybot.command.SlashCommand;
-import me.taz.stickybot.command.slash.StickCommand;
 
 public class SlashCommandInteractionListener extends ListenerAdapter {
     public static final Map<String, SlashCommand> commandMap = new HashMap<>();
@@ -40,21 +37,6 @@ public class SlashCommandInteractionListener extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         commandMap.get(event.getName()).run(event);
-    }
-
-    @Override
-    public void onCommandAutoCompleteInteraction(CommandAutoCompleteInteractionEvent event) {
-        commandMap.get(event.getName()).onCommandAutoCompleteInteraction(event);
-    }
-
-    @Override
-    public void onButtonInteraction(ButtonInteractionEvent event) {
-        commandMap.values().forEach(command -> command.onButtonInteraction(event));
-    }
-
-    @Override
-    public void onSelectMenuInteraction(SelectMenuInteractionEvent event) {
-        commandMap.values().forEach(command -> command.onSelectMenuInteraction(event));
     }
 
     @Override

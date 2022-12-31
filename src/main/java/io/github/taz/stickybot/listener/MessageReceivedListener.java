@@ -1,10 +1,10 @@
-package me.taz.stickybot.listener;
+package io.github.taz.stickybot.listener;
 
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-import me.taz.stickybot.sticky.StickyMessageUtils;
+import io.github.taz.stickybot.sticky.StickyMessageUtils;
 
 public class MessageReceivedListener extends ListenerAdapter {
     @Override
