@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/73871477/171182015-7237ba37-2f53-47fd-
 
 #### Hosting
 1. Make a `config.json` file in `src/main/resource/`
-2. Copy the contencts of [config.json.template](https://github.com/Taz03/Sticky-Bot/blob/master/src/main/resources/config.json.template) in your newly created config file
+2. Copy the contents of [config.json.template](https://github.com/Taz03/Sticky-Bot/blob/master/src/main/resources/config.json.template) in your newly created config file
 3. Put your bot token in the config file
 4. Run `./gradlew run` command on unix based OW and `gradlew run` on windows
 
