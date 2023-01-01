@@ -34,9 +34,7 @@ public class StickCommand implements SlashCommand {
             String msg = event.getValue("message").getAsString();
             MessageChannel channel = event.getChannel();
 
-            event.reply("""
-                Sticking Message...
-                Done :thumbsup:""").setEphemeral(true).queue();
+            event.reply("Sticked :thumbsup:").setEphemeral(true).queue();
 
             channel.sendMessage(msg).queue(message -> {
                 StickyMessage stickyMessage = new StickyMessage(channel.getIdLong(), msg, message.getIdLong());
