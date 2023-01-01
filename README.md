@@ -13,13 +13,16 @@ Right click a message then go to "Apps" to access commands
 https://user-images.githubusercontent.com/73871477/171182015-7237ba37-2f53-47fd-8dd4-e401a2bb7164.mp4
 
 ## Self Hosting
-1. Download `Docker`.
-3. Clone this repo locally.
-4. Run `docker build -t sticky-bot .`.
-5. Now run the image u just build with the command
-  ```
-  docker run -e TOKEN="bot token here" sticky-bot
-  ```
+#### Prerequisites
+1. Gradle 7.5 or above
+2. JDK 18 or above
+
+#### Hosting
+1. Make a `config.json` file in `src/main/resource/`
+2. Copy the contencts of [config.json.template](https://github.com/Taz03/Sticky-Bot/blob/master/src/main/resources/config.json.template) in your newly created config file
+3. Put your bot token in the config file
+4. Run `./gradlew run` command on unix based OW and `gradlew run` on windows
+
 Now the bot should be up.
 
 Use these scopes and permissons to invite the bot
