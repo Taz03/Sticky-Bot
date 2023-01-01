@@ -1,6 +1,5 @@
 package io.github.taz.stickybot.listener;
 
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -20,14 +19,10 @@ public class SlashCommandInteractionListener extends ListenerAdapter {
         addCommand(new StickCommand());
     }
 
-    public SlashCommandInteractionListener(JDA bot) {
-        CommandListUpdateAction update = bot.updateCommands();
-
-        commandMap.values().forEach(command -> update.addCommands(
+    public SlashCommandInteractionListener(CommandListUpdateAction updateAction) {
+        commandMap.values().forEach(command -> updateAction.addCommands(
                 Commands.slash(command.getName(), command.getDescription()).setGuildOnly(true)
         ));
-
-        update.queue();
     }
 
     private static void addCommand(SlashCommand command) {

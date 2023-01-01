@@ -15,8 +15,11 @@ dependencies {
     // Logger for JDA
     implementation 'ch.qos.logback:logback-classic:1.4.1'
 
-    // Driver for Postgresql
-    implementation 'org.postgresql:postgresql:42.5.0'
+    // Driver for sqlite
+    implementation 'org.xerial:sqlite-jdbc:3.40.0.0'
+
+    // JSON library
+    implementation 'dev.mccue:json:0.1.2'
 }
 
 application {
