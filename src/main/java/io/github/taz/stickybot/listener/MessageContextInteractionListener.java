@@ -1,6 +1,5 @@
 package io.github.taz.stickybot.listener;
 
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -21,14 +20,10 @@ public class MessageContextInteractionListener extends ListenerAdapter {
         addCommand(new UnStickCommand());
     }
 
-    public MessageContextInteractionListener(JDA bot) {
-        CommandListUpdateAction update = bot.updateCommands();
-
-        commandMap.values().forEach(command -> update.addCommands(
+    public MessageContextInteractionListener(CommandListUpdateAction updateAction) {
+        commandMap.values().forEach(command -> updateAction.addCommands(
                 Commands.message(command.getName()).setGuildOnly(true)
         ));
-
-        update.queue();
     }
 
     private static void addCommand(MessageCommand command) {
