@@ -1,14 +1,18 @@
 package io.github.taz.stickybot.sticky;
 
-import java.sql.*;
+import dev.mccue.json.JsonDecoder;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.github.taz.stickybot.App;
+
 public class StickyMessageUtils {
-    private static final String URL = "jdbc:sqlite:sticky.db";
+    private static final String DB_PATH = JsonDecoder.field(App.configJson, "db_storage", JsonDecoder::string) + "sticky.db";
+    private static final String URL = "jdbc:sqlite:" + DB_PATH;
     private static final Map<Long, List<StickyMessage>> guildMap = new HashMap<>();
 
     static {

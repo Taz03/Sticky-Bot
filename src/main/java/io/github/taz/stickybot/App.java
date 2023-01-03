@@ -15,11 +15,13 @@ import io.github.taz.stickybot.listener.MessageReceivedListener;
 import io.github.taz.stickybot.listener.SlashCommandInteractionListener;
 
 public class App {
+    public static Json configJson = null;
+    
     public static void main(String[] args) throws IOException {
-        String config = Files.readString(Path.of("src/main/resources/config.json"));
-        Json json = Json.readString(config);
+        String configString = Files.readString(Path.of(args.length > 0 ? args[0] : "src/main/resources/config.json"));
+        configJson = Json.readString(configString);
 
-        JDA bot = JDABuilder.createDefault(JsonDecoder.field(json, "token", JsonDecoder::string))
+        JDA bot = JDABuilder.createDefault(JsonDecoder.field(configJson, "token", JsonDecoder::string))
                 .addEventListeners(new MessageReceivedListener())
                 .build();
 
