@@ -1,3 +1,4 @@
 {
-    "token": "<your bot token here>"
+    "token": "your bot token here",
+    "db_storage": "folder path to store db in or leave empty"
 }
