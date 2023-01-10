@@ -6,13 +6,13 @@ import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import dev.mccue.json.Json;
 import dev.mccue.json.JsonDecoder;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import io.github.taz.stickybot.listener.MessageContextInteractionListener;
 import io.github.taz.stickybot.listener.MessageReceivedListener;
 import io.github.taz.stickybot.listener.SlashCommandInteractionListener;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class App {
     public static Json configJson = null;
