@@ -2,13 +2,13 @@ package io.github.taz.stickybot.sticky;
 
 import dev.mccue.json.JsonDecoder;
 
+import io.github.taz.stickybot.App;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import io.github.taz.stickybot.App;
 
 public class StickyMessageUtils {
     private static final String DB_PATH = JsonDecoder.field(App.configJson, "db_storage", JsonDecoder::string) + "sticky.db";
