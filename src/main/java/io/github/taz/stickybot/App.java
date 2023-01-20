@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import dev.mccue.json.Json;
 import dev.mccue.json.JsonDecoder;
-
+import io.github.taz.stickybot.listener.ClearDB;
 import io.github.taz.stickybot.listener.MessageContextInteractionListener;
 import io.github.taz.stickybot.listener.MessageReceivedListener;
 import io.github.taz.stickybot.listener.SlashCommandInteractionListener;
@@ -28,10 +28,12 @@ public class App {
 
         CommandListUpdateAction updateAction = jda.updateCommands();
 
-        jda.addEventListener(new MessageReceivedListener());
         jda.addEventListener(new MessageContextInteractionListener(updateAction));
         jda.addEventListener(new SlashCommandInteractionListener(updateAction));
 
         updateAction.queue();
+
+        jda.addEventListener(new MessageReceivedListener());
+        jda.addEventListener(new ClearDB());
     }
 }
