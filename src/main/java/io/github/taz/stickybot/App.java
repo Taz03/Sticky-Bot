@@ -9,6 +9,7 @@ import dev.mccue.json.JsonDecoder;
 import io.github.taz.stickybot.listener.MessageContextInteractionListener;
 import io.github.taz.stickybot.listener.MessageReceivedListener;
 import io.github.taz.stickybot.listener.SlashCommandInteractionListener;
+import io.github.taz.stickybot.sticky.StickyMessageUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,14 +22,15 @@ public class App {
         String configString = Files.readString(Path.of(args.length > 0 ? args[0] : "src/main/resources/config.json"));
         configJson = Json.readString(configString);
 
-        JDA bot = JDABuilder.createDefault(JsonDecoder.field(configJson, "token", JsonDecoder::string))
-                .addEventListeners(new MessageReceivedListener())
-                .build();
+        JDA jda = JDABuilder.createDefault(JsonDecoder.field(configJson, "token", JsonDecoder::string)).build();
 
-        CommandListUpdateAction updateAction = bot.updateCommands();
+        StickyMessageUtils.init(jda);
 
-        bot.addEventListener(new MessageContextInteractionListener(updateAction));
-        bot.addEventListener(new SlashCommandInteractionListener(updateAction));
+        CommandListUpdateAction updateAction = jda.updateCommands();
+
+        jda.addEventListener(new MessageReceivedListener());
+        jda.addEventListener(new MessageContextInteractionListener(updateAction));
+        jda.addEventListener(new SlashCommandInteractionListener(updateAction));
 
         updateAction.queue();
     }
