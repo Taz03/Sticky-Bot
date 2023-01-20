@@ -1,17 +1,24 @@
 package io.github.taz.stickybot.sticky;
 
 import dev.mccue.json.JsonDecoder;
-
-import io.github.taz.stickybot.App;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import io.github.taz.stickybot.App;
+import io.github.taz.stickybot.listener.ResendStickyListener;
 
+import java.lang.Thread.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class StickyMessageUtils {
+    private static final Logger logger = LoggerFactory.getLogger(StickyMessageUtils.class);
     private static final String DB_PATH = JsonDecoder.field(App.configJson, "db_storage", JsonDecoder::string) + "sticky.db";
     private static final String URL = "jdbc:sqlite:" + DB_PATH;
     private static final Map<Long, List<StickyMessage>> guildMap = new HashMap<>();
@@ -29,15 +36,24 @@ public class StickyMessageUtils {
                 """);
                 try (ResultSet stickies = statement.executeQuery("SELECT * FROM sticky_data")) {
                     while (stickies.next()) {
+                        long channelId = stickies.getLong("channelId");
+                        MessageChannel channel = jda.getTextChannelById(channelId);
+
+                        if (channel == null) {
+                            statement.executeUpdate("DELETE FROM sticky_data WHERE channelId = " + channelId);
+                            continue;
+                        }
+
                         long serverId = stickies.getLong("serverId");
+                        long messageId = stickies.getLong("messageId");
 
-                        if (jda.getGuildChannelById(serverId) == null) return;
+                        StickyMessage stickyMessage = new StickyMessage(channelId, stickies.getString("text"), messageId);
+                        addStickyToMap(serverId, stickyMessage);
 
-                        addStickyToMap(serverId, new StickyMessage(
-                                stickies.getLong("channelId"),
-                                stickies.getString("text"),
-                                stickies.getLong("messageId")
-                        ));
+                        channel.getHistory().retrievePast(1).map(messages -> messages.get(0)).queue(message -> {
+                            if (message.getIdLong() != messageId)
+                                ResendStickyListener.resendSticky(jda, stickyMessage);
+                        });
                     }
                 }
             }
