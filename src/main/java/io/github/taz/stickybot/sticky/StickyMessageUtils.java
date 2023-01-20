@@ -3,6 +3,7 @@ package io.github.taz.stickybot.sticky;
 import dev.mccue.json.JsonDecoder;
 
 import io.github.taz.stickybot.App;
+import net.dv8tion.jda.api.JDA;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class StickyMessageUtils {
     private static final String URL = "jdbc:sqlite:" + DB_PATH;
     private static final Map<Long, List<StickyMessage>> guildMap = new HashMap<>();
 
-    static {
+    public static void init(JDA jda) {
         try (Connection connection = DriverManager.getConnection(URL)) {
             try (Statement statement = connection.createStatement()) {
                 statement.execute("""
@@ -28,7 +29,11 @@ public class StickyMessageUtils {
                 """);
                 try (ResultSet stickies = statement.executeQuery("SELECT * FROM sticky_data")) {
                     while (stickies.next()) {
-                        addStickyToMap(stickies.getLong("serverId"), new StickyMessage(
+                        long serverId = stickies.getLong("serverId");
+
+                        if (jda.getGuildChannelById(serverId) == null) return;
+
+                        addStickyToMap(serverId, new StickyMessage(
                                 stickies.getLong("channelId"),
                                 stickies.getString("text"),
                                 stickies.getLong("messageId")
@@ -71,6 +76,18 @@ public class StickyMessageUtils {
         }
 
         guildMap.get(guildId).remove(stickyMessage);
+    }
+
+    public static void removeGuild(long guildId) {
+        try (Connection connection = DriverManager.getConnection(URL)) {
+            try (Statement statement = connection.createStatement()) {
+                statement.executeUpdate("DELETE FROM sticky_data WHERE guildId = " + guildId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        guildMap.remove(guildId);
     }
 
     public static void updateSticky(StickyMessage stickyMessage, long newMessageId) {
