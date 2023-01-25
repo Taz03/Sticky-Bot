@@ -7,7 +7,13 @@ https://user-images.githubusercontent.com/73871477/171182015-7237ba37-2f53-47fd-
 
 ## Self Hosting
 - Download and install JDK 19
-- Make a JSON file and fill the [template](https://github.com/Taz03/Sticky-Bot/blob/master/src/main/resources/config.json.template).
+- Make a JSON file and fill the template file.
+```json
+{
+    "token": "your bot token here",
+    "db_storage": "folder path to store db in or leave empty"
+}
+```
 - Download the latest jar from releases and then run `java -jar Sticky-Bot-all.jar <your config file path>`.
 
 Now the bot should be up.
