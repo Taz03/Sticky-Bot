@@ -7,7 +7,7 @@ https://user-images.githubusercontent.com/73871477/171182015-7237ba37-2f53-47fd-
 
 ## Self Hosting
 - Download and install JDK 19
-- Make a JSON file and fill the template file.
+- Make a JSON file and fill the template:-
 ```json
 {
     "token": "your bot token here",
