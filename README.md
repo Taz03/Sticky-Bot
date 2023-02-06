@@ -6,7 +6,7 @@ Demo Bot [Invite link](https://discord.com/api/oauth2/authorize?client_id=938366
 https://user-images.githubusercontent.com/73871477/171182015-7237ba37-2f53-47fd-8dd4-e401a2bb7164.mp4
 
 ## Self Hosting
-- Download and install JDK 19
+- Download and install latest version of java and gradle
 - Make a JSON file and fill the template:-
 ```json
 {
